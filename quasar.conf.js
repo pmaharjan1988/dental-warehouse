@@ -1,13 +1,15 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
-module.exports = function (ctx) {
+module.exports = function(ctx)
+{
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
-      'axios'
+      'axios',
+      'firebase'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -29,7 +31,8 @@ module.exports = function (ctx) {
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
-    framework: {
+    framework:
+    {
       iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
 
@@ -53,7 +56,8 @@ module.exports = function (ctx) {
     supportIE: false,
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
-    build: {
+    build:
+    {
       scopeHoisting: true,
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       showProgress: true,
@@ -64,12 +68,13 @@ module.exports = function (ctx) {
       // extractCSS: false,
 
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
-      extendWebpack (cfg) {
-      }
+      extendWebpack(cfg)
+      {}
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
-    devServer: {
+    devServer:
+    {
       https: false,
       port: 8080,
       open: true // opens browser window automatically
@@ -80,15 +85,19 @@ module.exports = function (ctx) {
     animations: [],
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
-    ssr: {
+    ssr:
+    {
       pwa: false
     },
 
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
-    pwa: {
+    pwa:
+    {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
-      workboxOptions: {}, // only for GenerateSW
-      manifest: {
+      workboxOptions:
+      {}, // only for GenerateSW
+      manifest:
+      {
         name: 'dental-ware',
         short_name: 'dental-ware',
         description: 'Dental Warehouse - All dental products buy at one place',
@@ -97,52 +106,55 @@ module.exports = function (ctx) {
         background_color: '#ffffff',
         theme_color: '#027be3',
         icons: [
-          {
-            'src': 'statics/icons/icon-128x128.png',
-            'sizes': '128x128',
-            'type': 'image/png'
-          },
-          {
-            'src': 'statics/icons/icon-192x192.png',
-            'sizes': '192x192',
-            'type': 'image/png'
-          },
-          {
-            'src': 'statics/icons/icon-256x256.png',
-            'sizes': '256x256',
-            'type': 'image/png'
-          },
-          {
-            'src': 'statics/icons/icon-384x384.png',
-            'sizes': '384x384',
-            'type': 'image/png'
-          },
-          {
-            'src': 'statics/icons/icon-512x512.png',
-            'sizes': '512x512',
-            'type': 'image/png'
-          }
-        ]
+        {
+          'src': 'statics/icons/icon-128x128.png',
+          'sizes': '128x128',
+          'type': 'image/png'
+        },
+        {
+          'src': 'statics/icons/icon-192x192.png',
+          'sizes': '192x192',
+          'type': 'image/png'
+        },
+        {
+          'src': 'statics/icons/icon-256x256.png',
+          'sizes': '256x256',
+          'type': 'image/png'
+        },
+        {
+          'src': 'statics/icons/icon-384x384.png',
+          'sizes': '384x384',
+          'type': 'image/png'
+        },
+        {
+          'src': 'statics/icons/icon-512x512.png',
+          'sizes': '512x512',
+          'type': 'image/png'
+        }]
       }
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
-    cordova: {
+    cordova:
+    {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
       id: 'org.cordova.quasar.app'
     },
 
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
-    capacitor: {
+    capacitor:
+    {
       hideSplashscreen: true
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
-    electron: {
+    electron:
+    {
       bundler: 'packager', // 'packager' or 'builder'
 
-      packager: {
+      packager:
+      {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
 
         // OS X / Mac App Store
@@ -155,7 +167,8 @@ module.exports = function (ctx) {
         // win32metadata: { ... }
       },
 
-      builder: {
+      builder:
+      {
         // https://www.electron.build/configuration/configuration
 
         appId: 'dental-ware'
@@ -166,7 +179,8 @@ module.exports = function (ctx) {
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: true,
 
-      extendWebpack (cfg) {
+      extendWebpack(cfg)
+      {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       }
