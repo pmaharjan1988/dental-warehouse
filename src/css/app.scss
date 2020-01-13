@@ -1,6 +1,13 @@
 // app global css in SCSS form
 @import url('https://fonts.googleapis.com/css?family=Asap:400,500,700&display=swap');
 
+.custom-caption
+{
+  text-align: center;
+  padding: 12px;
+  color: white;
+  background-color: rgba(0, 0, 0, .3);
+}
 @media (max-width: $breakpoint-xs-max) {
 	.desk-nav-items {
 		display: none !important;
@@ -172,6 +179,12 @@
 
 .login-bg {
 	background-image: url("/statics/road.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.register-bg {
+	background-image: url("/statics/register.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }

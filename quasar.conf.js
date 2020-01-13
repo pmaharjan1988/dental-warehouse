@@ -26,8 +26,9 @@ module.exports = function(ctx)
       // 'themify',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
+      'fontawesome-v5',
       'roboto-font', // optional, you are not bound to it
-      'material-icons' // optional, you are not bound to it
+      'material-icons'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework

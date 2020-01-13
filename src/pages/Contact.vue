@@ -1,11 +1,17 @@
 <template>
-  <q-page padding>
-    <!-- content -->
+  <q-page>
+    	<ContactUs/>
   </q-page>
 </template>
 
 <script>
+import ContactUs from '../components/ContactUs.vue'
+
 export default {
-  // name: 'PageName',
+  name: 'Contact',
+  components:
+	{
+		ContactUs
+	}
 }
 </script>

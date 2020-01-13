@@ -1,11 +1,16 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    <AboutUs/>
   </q-page>
 </template>
 
 <script>
+	import AboutUs from '../components/AboutUs.vue'
 export default {
-  // name: 'PageName',
+  name: 'About',
+  components:
+	{
+		AboutUs
+	}
 }
 </script>
