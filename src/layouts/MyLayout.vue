@@ -6,9 +6,21 @@
           <q-btn stretch class="app-name" flat size="0.9em" :label="appName" to="/" />
         </q-toolbar-title>
         <q-btn class='desk-nav-items' stretch flat v-for="(item,index) in navbaritems" :key="index" :label="item.label" :to="item.to" />
+        <q-btn class='mob-nav-items' icon="fas fa-bars">
+          <q-menu transition-show="flip-right" transition-hide="flip-left">
+            <q-list style="min-width: 100px">
+              <q-item clickable v-close-popup v-for="(item,index) in navbaritems" :key="index">
+                <q-item-section>
+                  <q-btn stretch flat :label="item.label" :to="item.to" color="primary" />
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+        <CartButton />
       </q-toolbar>
     </q-header>
-     <q-footer reveal :reveal-offset="10" elevated class="bg-white text-primary text-center text-body2">
+    <q-footer reveal :reveal-offset="10" elevated class="bg-white text-primary text-center text-body2">
       All Rights Reserved - {{ appName }}
     </q-footer>
     <q-page-container>
@@ -18,11 +30,14 @@
 </template>
 <script>
 import BackToTop from 'vue-backtotop'
+import CartButton from '../components/CartButton.vue'
+
 export default
 {
   components:
   {
-    BackToTop
+    BackToTop,
+    CartButton
   },
   mounted()
   {

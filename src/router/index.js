@@ -3,6 +3,12 @@ import VueRouter from 'vue-router'
 
 import routes from './routes'
 
+import
+{
+  LocalStorage
+}
+from 'quasar'
+
 Vue.use(VueRouter)
 
 /*
@@ -14,17 +20,36 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
-  const Router = new VueRouter({
-    scrollBehavior: () => ({ x: 0, y: 0 }),
+export default function( /* { store, ssrContext } */ )
+{
+  const Router = new VueRouter(
+  {
+    scrollBehavior: () => (
+    {
+      x: 0,
+      y: 0
+    }),
     routes,
 
     // Leave these as they are and change in quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
-    mode: "history",
+    //mode: "history",
     base: process.env.VUE_ROUTER_BASE
   })
+
+  /*Router.beforeEach((to, from, next) =>
+  {
+    if (LocalStorage.has('STORAGEUSER'))
+    {
+      let isAuthenticated = LocalStorage.getItem('STORAGEUSER');
+      console.log('route ' + isAuthenticated)
+      if (!isAuthenticated) next('/login')
+      else next()
+    }
+    else next()
+
+  })*/
 
   return Router
 }

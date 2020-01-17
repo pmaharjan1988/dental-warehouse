@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import global from './global'
 
 // import example from './module-example'
 
@@ -14,16 +15,35 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-export default function (/* { ssrContext } */) {
-  const Store = new Vuex.Store({
-    modules: {
+export default function( /* { ssrContext } */ )
+{
+  const Store = new Vuex.Store(
+  {
+    modules:
+    {
       // example
+      global
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEV
   })
+
+  if (process.env.DEV && module.hot)
+  {
+    module.hot.accept(['./global'], () =>
+    {
+      const newTest = require('./global').default
+      Store.hotUpdate(
+      {
+        modules:
+        {
+          global: newTest
+        }
+      })
+    })
+  }
 
   return Store
 }

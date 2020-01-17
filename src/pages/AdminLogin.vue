@@ -1,10 +1,10 @@
 <template>
-  <q-page class="login-bg">
+  <q-page class="register-bg">
     <div class="q-pa-md ">
       <div class="login-main absolute-center">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md ">
           <q-card class="q-pa-md card-top-border ">
-            <div class="text-h5 text-primary">Login</div>
+            <div class="text-h5 text-primary">Admin Login</div>
             <q-separator class="mtt-20 mbb-20" />
             <q-input filled v-model="form.email" label="Email *" type="email" autofocus lazy-rules :rules="[ val => val && val.length > 0 || 'Please Enter Email']" />
             <q-input filled class="mtt-10" type="password" v-model="form.password" label="Password *" lazy-rules :rules="[
@@ -37,7 +37,7 @@ export default
     return {
       form:
       {
-        email: 'test@gmail.com',
+        email: 'admin@gmail.com',
         password: 'redevil',
       },
       loading: false,
@@ -57,7 +57,7 @@ export default
 
           this.$router.replace(
           {
-            name: "Dashboard"
+            name: "AdminDashboard"
           });
         })
         .catch(err =>

@@ -13,8 +13,10 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
+    "date-fns": "^2.9.0",
     "firebase": "^7.6.2",
     "quasar": "^1.0.0",
+    "v-img": "^0.2.0",
     "vue-backtotop": "^1.6.1",
     "vue-concise-slider": "^3.4.4"
   },

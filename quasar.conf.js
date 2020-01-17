@@ -50,7 +50,7 @@ module.exports = function(ctx)
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['LocalStorage', 'Loading', 'Notify']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -182,6 +182,7 @@ module.exports = function(ctx)
 
       extendWebpack(cfg)
       {
+        sss
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       }
