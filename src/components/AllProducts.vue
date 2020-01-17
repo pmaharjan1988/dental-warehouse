@@ -12,9 +12,11 @@
             </div>
           </q-card-section>
           <div class=" full-width row justify-end mtt-10 mbb-10" style="border-top: 1px solid grey">
-            <q-btn class="mtt-10" flat round icon=" shopping_cart" color="primary" />
-            <q-btn class="mtt-10" flat color="primary" @click="addToCart(item)">
+            <q-btn class="mtt-10 mbb-10" flat icon="shopping_cart" color="primary" @click="addToCart(item)">
               Add to Cart
+            </q-btn>
+            <q-btn flat icon="description" class="mtt-10" color="primary" @click="openProduct(item.id)">
+              Know More
             </q-btn>
           </div>
         </q-card>
@@ -30,52 +32,50 @@ import
 from 'boot/firebase'
 import
 {
-  mapGetters,
-  mapActions,
-  mapMutations
+mapGetters,
 }
 from 'vuex'
+
 export default
 {
   data()
   {
     return {
-      products_data: []
+      //products_data: []
     }
+  },
+  computed:
+  {
+    ...mapGetters(
+    {
+      products_data: 'global/getAllProductData' // map `this.add()` to `this.$store.dispatch('increment')`
+    })
+
   },
   mounted()
   {
+
     this.initProducts();
   },
   methods:
   {
 
-    initProducts: function()
+    initProducts: async function()
     {
-
-      let productCollection = firebaseStorage.collection('products').get()
-        .then(querySnapshot =>
-        {
-          this.products_data = querySnapshot.docs.map(doc => doc.data());
-          this.products_data = this.products_data.sort((a, b) => parseFloat(a.order) - parseFloat(b.order));
-        })
-        .catch(err =>
-        {
-          this.pageLoader = false;
-        });
+      await this.$store.dispatch('global/getAllProducts')
     },
-    openProduct: function(id)
-    {
-      this.$router.push(
-      {
-        name: 'OpenProduct',
-        params:
-        {
-          id: id
-        }
-      })
+  openProduct: function(id)
+{
+this.$router.push(
+{
+name: 'OpenProduct',
+params:
+{
+id: id
+}
+})
+},
 
-    },
     addToCart: function(item)
     {
 

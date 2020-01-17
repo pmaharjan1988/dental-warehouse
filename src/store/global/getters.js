@@ -23,6 +23,16 @@ export function getCartCount(state)
   return state.cart.length
 }
 
+export function getSingleProductData(state)
+{
+  return state.product_single;
+}
+
+export function getAllProductData(state)
+{
+  return state.product_data;
+}
+
 export function getProductTotal(state)
 {
   let cartItems = state.cart;

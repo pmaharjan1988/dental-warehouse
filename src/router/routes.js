@@ -105,6 +105,17 @@ const routes = [
   }]
 },
 {
+  path: '/product/:id',
+
+  component: () => import('layouts/MyLayout.vue'),
+  children: [
+  {
+    path: '',
+    name: 'OpenProduct',
+    component: () => import('pages/OpenProduct.vue')
+  }]
+},
+{
   path: '/admin/enquiry',
   component: () => import('layouts/AdminLayout.vue'),
   children: [

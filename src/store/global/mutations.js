@@ -26,3 +26,14 @@ export function SET_TO_CART(state, data)
   state.cart.push(data);
 
 }
+
+export function SET_ALL_PRODUCT_DATA(state, data)
+{
+  state.product_data = data;
+}
+
+
+export function SET_SINGLE_PRODUCT_DATA(state, data)
+{
+  state.product_single = data;
+}

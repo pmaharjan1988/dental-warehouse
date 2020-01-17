@@ -10,11 +10,7 @@ export default function()
     },
     enq_form_show: true,
     enq_form_submitted: false,
-
-    cart_item:
-    {
-      'id': '',
-      'name': ''
-    }
+    product_data: [],
+    product_single: []
   }
 }
