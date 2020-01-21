@@ -5,19 +5,25 @@
         <q-toolbar-title>
           <q-btn stretch class="app-name" flat size="0.9em" :label="appName" to="/" />
         </q-toolbar-title>
-        <q-btn class='desk-nav-items' stretch flat v-for="(item,index) in navbaritems" :key="index" :label="item.label" :to="item.to" />
-        <q-btn class='mob-nav-items' icon="fas fa-bars">
-          <q-menu transition-show="flip-right" transition-hide="flip-left">
-            <q-list style="min-width: 100px">
-              <q-item clickable v-close-popup v-for="(item,index) in navbaritems" :key="index">
-                <q-item-section>
-                  <q-btn stretch flat :label="item.label" :to="item.to" color="primary" />
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-        <CartButton />
+        <div v-if="!loginStatus">
+          <q-btn class='desk-nav-items' stretch flat v-for="(item,index) in navbaritems" :key="index" :label="item.label" :to="item.to" />
+          <q-btn class='mob-nav-items' icon="fas fa-bars">
+            <q-menu transition-show="flip-right" transition-hide="flip-left">
+              <q-list style="min-width: 100px">
+                <q-item clickable v-close-popup v-for="(item,index) in navbaritems" :key="index">
+                  <q-item-section>
+                    <q-btn stretch flat :label="item.label" :to="item.to" color="primary" />
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+        </div>
+        <div v-else>
+          <q-btn stretch flat label="Dashboard" to="/dashboard" />
+          <q-btn stretch flat label="LogOut" @click="logout()" />
+        </div>
+        <!--<CartButton />-->
       </q-toolbar>
     </q-header>
     <q-footer reveal :reveal-offset="10" elevated class="bg-white text-primary text-center text-body2">
@@ -31,6 +37,22 @@
 <script>
 import BackToTop from 'vue-backtotop'
 import CartButton from '../components/CartButton.vue'
+import
+{
+  mapGetters,
+}
+from 'vuex'
+import
+{
+  firebaseAuth
+}
+from 'boot/firebase'
+import
+{
+  LocalStorage,
+  Notify,
+}
+from 'quasar'
 
 export default
 {
@@ -47,6 +69,7 @@ export default
   {
     return {
       appName: null,
+      loginStatus: false,
       navbaritems: [
         {
           label: 'Home',
@@ -82,6 +105,43 @@ export default
 
 
       ]
+    }
+  },
+  created()
+  {
+    this.initCheckLogin();
+  },
+  methods:
+  {
+    initCheckLogin: function()
+    {
+
+      let x = this.$store.dispatch('global/checkUserState');
+      this.storageUser = LocalStorage.getItem('STORAGEUSER');
+      console.log(this.storageUser)
+
+      if (this.storageUser == false)
+      {
+        this.loginStatus = false;
+      }
+      else
+      {
+        this.loginStatus = true;
+      }
+    },
+    logout()
+    {
+      LocalStorage.remove('STORAGEUSER');
+      firebaseAuth
+        .signOut()
+        .then(() =>
+        {
+
+          this.$router.replace(
+          {
+            name: "Login"
+          });
+        });
     }
   }
 };

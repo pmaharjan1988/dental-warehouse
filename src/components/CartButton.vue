@@ -3,13 +3,24 @@
     <q-menu>
       <div class="row no-wrap q-pa-md">
         <div class="column">
+          <div v-if="cart_total == 0">
+            <q-list style="max-height: 200px;min-width: auto;">
+              <q-item>
+                <div class="text-center text-grey text-h6">
+                  Cart is empty
+                </div>
+              </q-item>
+            </q-list>
+          </div>
           <q-list style="max-height: 200px;min-width: auto;">
-            <q-item clickable v-for="(item,index) in card_items" :key="index">
+            <q-item clickable v-for="(item,index) in cart_items" :key="index">
               <q-item-section>
                 {{item.name}}
               </q-item-section>
               <q-item-section side>
-                <q-item-label>A$ - {{item.price}}</q-item-label>
+                <q-item-label>A$ - {{item.price}}
+                  <q-btn color="negative" flat dense size="md" icon="delete" @click="deleteProduct(item.id)" />
+                </q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -19,7 +30,9 @@
           <div class="text-subtitle1 text-grey q-mt-md q-mb-xs">Total </div>
           <div class="text-h5">A$</div>
           <div class="text-h5">{{cart_total}}</div>
-          <q-btn class="mtt-20" color="primary" label="Checkout" push size="md" @click="checkOutCart()" />
+          <div v-if="cart_total > 0">
+            <q-btn class="mtt-20" color="primary" label="Checkout" push size="md" to="/checkout" />
+          </div>
         </div>
       </div>
     </q-menu>
@@ -46,7 +59,7 @@ export default
   {
     ...mapGetters(
     {
-      card_items: "global/getCartItems",
+      cart_items: "global/getCartItems",
       cart_length: "global/getCartCount",
       cart_total: "global/getProductTotal"
     })
@@ -54,16 +67,13 @@ export default
   },
   mounted()
   {
-    console.log(this.card_items);
+    console.log(this.cart_items);
   },
   methods:
   {
-    getCardItems: function() {
-
-    },
-    checkOutCart: function()
+    deleteProduct: function(id)
     {
-      alert('available on future release')
+      this.$store.commit('global/DELETE_FROM_CART', id);
     }
   }
 }

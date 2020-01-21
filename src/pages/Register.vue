@@ -3,23 +3,26 @@
     <div class="q-pa-md ">
       <div class="login-main absolute-center">
         <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md ">
-          <q-card class="q-pa-md card-top-border ">
+          <q-card class="q-pa-md card-top-border mtt-20 mbb-20">
             <div class="text-h5 text-primary">Register with Dental Warehouse</div>
             <q-separator class="mtt-20 mbb-20" />
-            <q-input autofocus filled flat class="mtt-10 " type="text" v-model="form.name" label="Full Name *" lazy-rules :rules="[
+            <q-input dense autofocus filled flat class="mtt-10 " type="text" v-model="form.name" label="Full Name *" lazy-rules :rules="[
         		val => val && val.length > 0 || 'Please Enter Full Name']" />
-            <q-input filled class="mtt-10" v-model="form.email" label="Email *" type="email" lazy-rules :rules="[ val => val && val.length > 0 || 'Please Enter Email']" />
-            <q-input filled class="mtt-10" type="password" v-model="form.password" label="Password *" lazy-rules :rules="[
+            <q-input dense filled class="mtt-10" v-model="form.email" label="Email *" type="email" lazy-rules :rules="[ val => val && val.length > 0 || 'Please Enter Email']" />
+            <q-input dense filled class="mtt-10" type="password" v-model="form.password" label="Password *" lazy-rules :rules="[
         		val => val && val.length > 0 || 'Please Enter Password']" />
-            <q-input filled class="mtt-10" type="password" v-model="form.repeat_password" label="Repeat Password *" error-message="Password & Confirm Password must match" :error="!confirmPassword" lazy-rules :rules="[
+            <q-input dense filled class="mtt-10" type="password" v-model="form.repeat_password" label="Repeat Password *" error-message="Password & Confirm Password must match" :error="!confirmPassword" lazy-rules :rules="[
         		val => val && val.length > 0 || 'Please Enter repeat Password']" />
-            <q-input prefix="+61" filled class="mtt-10 " type="number" v-model="form.mobile" label="Mobile Number *" lazy-rules :rules="[
+            <q-input dense prefix="+61" filled class="mtt-10 " type="number" v-model="form.mobile" label="Mobile Number *" lazy-rules :rules="[
         		val => val && val.length > 0 || 'Please Enter Mobile Number',
         		val => val && val.length < 10 || 'Mobile number cannot be greater than 9 digits',
         		val => val && val.length > 8 || 'Mobile number should be of 9 digits']" />
             <div class="flex justify-end">
               <q-btn label="Submit" :loading="loading" type="submit" color="primary" />
               <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+            </div>
+            <div class="text-center mtt-10">
+              <q-btn flat size="12px" to="/login" label="Already a member click here to login" color="primary" />
             </div>
           </q-card>
         </q-form>

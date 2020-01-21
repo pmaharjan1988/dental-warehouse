@@ -37,3 +37,19 @@ export function SET_SINGLE_PRODUCT_DATA(state, data)
 {
   state.product_single = data;
 }
+
+export function SET_LOGGIN_NAVIGATION(state, data)
+{
+  state.login_navigation = data;
+}
+
+
+export function DELETE_FROM_CART(state, id)
+{
+  let cartData = state.cart;
+  let result = cartData.findIndex(item => item.id == id);
+  if (result > -1)
+  {
+    cartData.splice(result, 1);
+  }
+}

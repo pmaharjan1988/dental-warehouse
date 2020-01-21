@@ -33,6 +33,11 @@ export function getAllProductData(state)
   return state.product_data;
 }
 
+export function getLoginNavigation(state)
+{
+  return state.login_navigation;
+}
+
 export function getProductTotal(state)
 {
   let cartItems = state.cart;

@@ -12,6 +12,7 @@
                 <q-editor min-height="5rem" v-model="product_desc" />
               </div>
               <q-input dense filled v-model="price" label="Product Price (A$) *" type="number" lazy-rules :rules="[ val => val && val.length > 0 || 'Please Enter Product price']" />
+              <q-input dense filled v-model="quantity" label="Quantity *" type="number" lazy-rules :rules="[ val => val && val.length > 0 || 'Please Enter Product quantity']" />
               <div class="flex justify-end">
                 <q-btn label="Submit" :loading="loading" type="submit" color="primary" />
               </div>
@@ -63,6 +64,7 @@ export default
       category: 1,
       price: null,
       order: "",
+      quantity: "",
       attachment:
       {
         name: null,
@@ -104,7 +106,8 @@ export default
         thumb_img: "",
         order: this.order,
         category: this.category,
-        price: this.price
+        price: this.price,
+        qty: this.quantity
       }).then(() =>
       {
         Notify.create(

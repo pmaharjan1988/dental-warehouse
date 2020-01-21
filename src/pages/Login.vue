@@ -8,10 +8,13 @@
             <q-separator class="mtt-20 mbb-20" />
             <q-input filled v-model="form.email" label="Email *" type="email" autofocus lazy-rules :rules="[ val => val && val.length > 0 || 'Please Enter Email']" />
             <q-input filled class="mtt-10" type="password" v-model="form.password" label="Password *" lazy-rules :rules="[
-        		val => val && val.length > 0 || 'Please Enter Password']" />
+            val => val && val.length > 0 || 'Please Enter Password']" />
             <div class="flex justify-end">
               <q-btn label="Submit" :loading="loading" type="submit" color="primary" />
               <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+            </div>
+            <div class="text-center mtt-10">
+              <q-btn flat size="12px" to="/register" label="Not a member. Click here to register." color="primary" />
             </div>
           </q-card>
         </q-form>
@@ -25,6 +28,7 @@ import
   firebaseAuth
 }
 from 'boot/firebase'
+
 import
 {
   Notify
@@ -43,6 +47,8 @@ export default
       loading: false,
     }
   },
+  mounted()
+  {},
 
   methods:
   {
@@ -52,13 +58,26 @@ export default
       firebaseAuth.signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(data =>
         {
-          console.log(data);
           let userState = this.$store.dispatch('global/checkUserState');
 
-          this.$router.replace(
+          let loginNav = this.$store.getters['global/getLoginNavigation']
+
+          if (loginNav === 'FROM_CHECKOUT')
           {
-            name: "Dashboard"
-          });
+            this.$router.replace(
+            {
+              name: "Checkout"
+            });
+          }
+          else
+          {
+            this.$router.replace(
+            {
+              name: "Dashboard"
+            });
+          }
+
+
         })
         .catch(err =>
         {

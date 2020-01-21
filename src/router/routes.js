@@ -53,6 +53,17 @@ const routes = [
   }]
 },
 {
+  path: '/checkout',
+
+  component: () => import('layouts/MyLayout.vue'),
+  children: [
+  {
+    path: '',
+    name: 'Checkout',
+    component: () => import('pages/Checkout.vue')
+  }]
+},
+{
   path: '/admin/login',
 
   component: () => import('layouts/MyLayout.vue'),

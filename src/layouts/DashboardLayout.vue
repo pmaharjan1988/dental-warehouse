@@ -6,7 +6,7 @@
         <q-toolbar-title>
           <q-btn stretch class="app-name" flat size="0.9em" :label="appName" to="/" />
         </q-toolbar-title>
-        <CartButton />
+        <!-- <CartButton /> -->
         <q-btn stretch flat label="LogOut" @click="logout()" />
       </q-toolbar>
     </q-header>

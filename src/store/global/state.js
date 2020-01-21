@@ -11,6 +11,7 @@ export default function()
     enq_form_show: true,
     enq_form_submitted: false,
     product_data: [],
-    product_single: []
+    product_single: [],
+    login_navigation: null,
   }
 }
