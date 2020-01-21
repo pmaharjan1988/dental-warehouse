@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <div class="row mtt-20">
-      <div class="col-md-4 col-sm-4 col-xs-12 q-pa-lg" style="margin:0 auto;" v-for="(item,index) in products_data" :key="index">
+      <div class="col-md-4 col-sm-12 col-xs-12 q-pa-lg" style="margin:0 auto;" v-for="(item,index) in products_data" :key="index">
         <q-card bordered class="shadow-20 flex" style="width: 100%;height:100%">
           <img v-img:spimg :src="item.thumb_img" style="width: 100%;height:200px;margin-bottom:0 !important" :alt="item.name">
           <q-card-section class="q-pt-md w-100">
@@ -12,9 +12,9 @@
             </div>
           </q-card-section>
           <div class=" full-width row justify-end mtt-10 mbb-10" style="border-top: 1px solid grey">
-            <q-btn class="mtt-10 mbb-10" flat icon="shopping_cart" color="primary" @click="addToCart(item)">
+            <!--<q-btn class="mtt-10 mbb-10" flat icon="shopping_cart" color="primary" @click="addToCart(item)">
               Add to Cart
-            </q-btn>
+            </q-btn>-->
             <q-btn flat icon="description" class="mtt-10" color="primary" @click="openProduct(item.id)">
               Know More
             </q-btn>

@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page class="login-bg">
     	<ContactUs/>
   </q-page>
 </template>

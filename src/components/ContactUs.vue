@@ -14,7 +14,7 @@
 							<q-icon name="fas fa-id-card-alt"> </q-icon>
 						</div>
 						<div class="col-auto">
-							<div> Contact name </div>
+							<div> Contact name : Manmeet Singh </div>
 						</div>
 					</div>
 					<div class="row mtt-20">
@@ -22,7 +22,7 @@
 							<q-icon name="fas fa-phone"> </q-icon>
 						</div>
 						<div class="col-auto">
-							<a class="text-white" href="tel:+919826335804">tel</a>
+							<a class="text-white" href="tel:+61 478911037">+61 478911037</a>
 						</div>
 					</div>
 					<div class="row mtt-20">
@@ -30,7 +30,7 @@
 							<q-icon name="fas fa-envelope"> </q-icon>
 						</div>
 						<div class="col-auto">
-							<a class="text-white" href="mailto:ssvaidya2002@yahoo.com">email</a> 
+							<a class="text-white" href="mailto:dentalwarehouse@gmail.com">dentalwarehouse@gmail.com</a> 
 						</div>
 					</div>
 					<div class="row mtt-20">
@@ -40,7 +40,7 @@
 						<div class="col-auto">
 							Lane 1 <br>
 							Lane 2 <br>
-							City Country<br>
+							Brisbane Australia<br>
 						</div>
 					</div>
 					<div class="row mtt-20">
