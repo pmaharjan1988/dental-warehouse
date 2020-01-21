@@ -17,7 +17,7 @@ import WhyUs from '../components/WhyUs.vue'
 import EnquiryForm from '../components/EnquiryForm.vue'
 export default
 {
-  name: 'PageIndex',
+  name: 'Index',
   components:
   {
     Carosuel,
