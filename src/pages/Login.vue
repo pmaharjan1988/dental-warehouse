@@ -34,6 +34,12 @@ import
   Notify
 }
 from 'quasar'
+
+import
+{
+  provideAlert
+}
+from "../js/common"
 export default
 {
   data()
@@ -48,7 +54,9 @@ export default
     }
   },
   mounted()
-  {},
+  {
+
+  },
 
   methods:
   {

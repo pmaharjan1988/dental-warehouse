@@ -2,6 +2,9 @@
   <q-page padding>
     <div class="row">
       <div class="col-6 q-pa-md">
+        <CheckoutItems />
+      </div>
+      <div class="col-6">
         <div v-if="!loginStatus">
           <div class="q-pa-md row full-width justify-center">
             <div class="text-h4  text-negative">You are not Logged In</div>
@@ -12,15 +15,14 @@
         </div>
         <div v-else>
           <div class="q-pa-md row full-width justify-center">
-            <div class="q-pa-md row full-width justify-center">
-              <div class="text-h4  text-positive">You are logged in</div>
+            <div class="q-pa-md row full-width">
+              <div class="text-h5">Hello {{user.data.displayName}} , <br>
+                <div style="font-size: 16px !important">You have {{cart_length}} items in your Bag.</div>
+              </div>
             </div>
-            <q-btn color="primary" to="/" size="lg">Proceed</q-btn>
+            <q-btn color="primary" to="/address" size="lg">Proceed A$ {{cart_total}}</q-btn>
           </div>
         </div>
-      </div>
-      <div class="col-6">
-        <CheckoutItems />
       </div>
     </div>
   </q-page>
@@ -49,6 +51,15 @@ export default
   {
     this.initCheckLogin();
   },
+  computed:
+  {
+    ...mapGetters(
+    {
+      cart_total: "global/getProductTotal",
+      cart_length: "global/getCartCount",
+      user: "global/user"
+    })
+  },
   data()
   {
     return {
@@ -65,9 +76,6 @@ export default
       {
         name: "Login"
       });
-
-
-
     },
     initCheckLogin: function()
     {

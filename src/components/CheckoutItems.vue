@@ -10,7 +10,7 @@
           <q-list bordered separator>
             <q-item clickable v-ripple>
               <q-avatar color="primary" text-color="white">{{index+1}}</q-avatar>
-              <q-item-section class="q-pa-sm text-h6">{{item.name}}</q-item-section>
+              <q-item-section class="q-pa-sm text-body fw-500">{{item.name}}</q-item-section>
               <q-item-section side class="text-h6">{{item.price}} A$</q-item-section>
               <q-item-section side>
                 <q-btn color="negative" flat dense size="md" icon="delete" @click="deleteProduct(item.id)" />

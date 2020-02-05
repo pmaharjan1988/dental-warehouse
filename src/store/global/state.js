@@ -13,5 +13,7 @@ export default function()
     product_data: [],
     product_single: [],
     login_navigation: null,
+    address: null,
+    order: [],
   }
 }

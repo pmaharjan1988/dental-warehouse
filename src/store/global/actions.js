@@ -57,19 +57,25 @@ export function addToCheckout(context, data)
 
 export async function getAllProducts(context)
 {
-
+  console.log(1)
   let products_data;
   let productCollection = await firebaseStorage.collection('products').get()
     .then(querySnapshot =>
     {
+      console.log(2)
+
       products_data = querySnapshot.docs.map(doc => doc.data());
       products_data = products_data.sort((a, b) => parseFloat(a.order) - parseFloat(b.order));
       context.commit("SET_ALL_PRODUCT_DATA", products_data);
+      console.log(3)
+
     })
     .catch(err =>
     {
 
     });
+  console.log(4)
+
 
 }
 

@@ -6,8 +6,8 @@
         <q-toolbar-title>
           <q-btn stretch class="app-name" flat size="0.9em" :label="appName" to="/" />
         </q-toolbar-title>
-        <!-- <CartButton /> -->
-        <q-btn stretch flat label="LogOut" @click="logout()" />
+        <NavBarItems />
+        <CartButton />
       </q-toolbar>
     </q-header>
     <q-drawer show-if-above v-model="left" side="left" bordered>
@@ -31,6 +31,7 @@ import
 from "vuex";
 import BackToTop from 'vue-backtotop'
 import CartButton from '../components/CartButton.vue'
+import NavBarItems from '../components/NavBarItems.vue'
 
 import
 {
@@ -45,7 +46,8 @@ export default
   components:
   {
     BackToTop,
-    CartButton
+    CartButton,
+    NavBarItems
   },
   data()
   {
@@ -66,46 +68,7 @@ export default
   {
     this.appName = process.env.APP_NAME;
   },
-  created()
-  {
-    this.initCheckLogin();
-  },
-  methods:
-  {
-    initCheckLogin: function()
-    {
 
-      let x = this.$store.dispatch('global/checkUserState');
-      this.storageUser = LocalStorage.getItem('STORAGEUSER');
-      if (this.storageUser == false)
-      {
-        Notify.create(
-        {
-          message: 'You are logged out. Please login.',
-          color: 'red'
-        });
-
-        this.$router.push(
-        {
-          name: 'Login',
-        })
-      }
-    },
-    logout()
-    {
-      LocalStorage.remove('STORAGEUSER');
-      firebaseAuth
-        .signOut()
-        .then(() =>
-        {
-
-          this.$router.replace(
-          {
-            name: "Login"
-          });
-        });
-    }
-  }
 };
 
 </script>

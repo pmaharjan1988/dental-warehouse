@@ -18,6 +18,11 @@ export function getCartItems(state)
   return state.cart
 }
 
+export function getAddress(state)
+{
+  return state.address
+}
+
 export function getCartCount(state)
 {
   return state.cart.length

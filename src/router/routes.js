@@ -96,6 +96,46 @@ const routes = [
   }]
 },
 {
+  path: '/address',
+  component: () => import('layouts/MyLayout.vue'),
+  children: [
+  {
+    path: '',
+    name: 'Address',
+    component: () => import('pages/Address.vue')
+  }]
+},
+{
+  path: '/summary',
+  component: () => import('layouts/MyLayout.vue'),
+  children: [
+  {
+    path: '',
+    name: 'Summary',
+    component: () => import('pages/Summary.vue')
+  }]
+},
+{
+  path: '/payment',
+  component: () => import('layouts/MyLayout.vue'),
+  children: [
+  {
+    path: '',
+    name: 'Payment',
+    component: () => import('pages/Payment.vue')
+  }]
+},
+{
+  path: '/order',
+  component: () => import('layouts/MyLayout.vue'),
+  children: [
+  {
+    path: '',
+    name: 'Order',
+    component: () => import('pages/Order.vue')
+  }]
+},
+{
   path: '/admin/dashboard',
   component: () => import('layouts/AdminLayout.vue'),
   children: [
