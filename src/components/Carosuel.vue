@@ -1,14 +1,15 @@
 <template>
-  <div >
+  <div class="q-pr-lg q-pl-lg">
     <q-carousel
       arrows
       animated
       v-model="slide"
-      height="90vh"
+      height="80vh"
       infinite
       autoplay
+     
     >
-      <q-carousel-slide name="first" img-src="/statics/doctor.jpg">
+      <q-carousel-slide   name="first" img-src="/statics/doctor.jpg">
         <!--<div class="absolute-bottom custom-caption">
           <div class="text-h2">First image</div>
           <div class="text-subtitle1"></div>

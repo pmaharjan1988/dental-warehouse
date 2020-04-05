@@ -9,7 +9,7 @@
             <CartButton />
         </q-toolbar>
     </q-header>
-    <q-footer reveal :reveal-offset="10" elevated class="bg-white q-pa-md text-center  text-primary">
+    <q-footer reveal :reveal-offset="10" elevated class="bg-dark q-pa-md text-center  text-primary">
 
         All Rights Reserved - {{ appName }}
         <div class="row justify-center">
