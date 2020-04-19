@@ -8,6 +8,10 @@
   background-color: rgba(0, 0, 0, .3);
 }
 
+.q-router-link--active {
+  background-color: #c2c2c2;
+}
+
 .my-card {
   width: 30%;
   max-width: 350px;
@@ -35,8 +39,7 @@
   }
 }
 
-@media (max-width: $breakpoint-sm-max
-) {
+@media (max-width: $breakpoint-sm-max) {
   .desk-nav-items {
     display: none !important;
   }
@@ -101,6 +104,7 @@
 
 .q-page-container {
   background: #F8F9FA;
+  height: 100vh;
 }
 
 .make-sticky {
@@ -185,6 +189,14 @@
 
 .card-top-border {
   border-top: $primary 5px solid;
+}
+
+.txt-mat-success {
+  color: #1DE9B6;
+}
+
+.txt-mat-danger {
+  color: #D50000;
 }
 
 

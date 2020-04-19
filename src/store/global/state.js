@@ -1,5 +1,4 @@
-export default function()
-{
+export default function () {
 
   return {
     cart: [],
@@ -14,6 +13,8 @@ export default function()
     product_single: [],
     login_navigation: null,
     address: null,
-    order: [],
+    user_orders: [],
+    order_dates: null,
+    user_profile: {},
   }
 }

@@ -10,8 +10,22 @@
         <CartButton />
       </q-toolbar>
     </q-header>
-    <q-drawer show-if-above v-model="left" side="left" bordered>
-      <!-- drawer content -->
+    <q-drawer
+      v-model="drawer"
+      show-if-above
+      :width="200"
+      :breakpoint="500"
+      bordered
+      content-class="bg-grey-3"
+    >
+      <q-list v-for="(menuItem, index) in menuList" :key="index">
+        <q-item clickable :to="menuItem.path" v-ripple>
+          <q-item-section avatar>
+            <q-icon :name="menuItem.icon" :color="menuItem.color" />
+          </q-item-section>
+          <q-item-section>{{ menuItem.label }}</q-item-section>
+        </q-item>
+      </q-list>
     </q-drawer>
     <q-page-container>
       <router-view />
@@ -19,56 +33,50 @@
   </q-layout>
 </template>
 <script>
-import
-{
-  firebaseAuth
-}
-from 'boot/firebase'
-import
-{
-  mapGetters
-}
-from "vuex";
-import BackToTop from 'vue-backtotop'
-import CartButton from '../components/CartButton.vue'
-import NavBarItems from '../components/NavBarItems.vue'
+import { firebaseAuth } from "boot/firebase";
+import BackToTop from "vue-backtotop";
+import CartButton from "../components/CartButton.vue";
+import NavBarItems from "../components/NavBarItems.vue";
 
-import
-{
-  LocalStorage,
-  Notify,
-}
-from 'quasar'
+import { LocalStorage, Notify } from "quasar";
 
-
-export default
-{
-  components:
-  {
+export default {
+  components: {
     BackToTop,
     CartButton,
     NavBarItems
   },
-  data()
-  {
+  data() {
     return {
       left: false,
       appName: null,
+      drawer: true,
       storageUser: null,
-    }
+      menuList: [
+        {
+          label: "Home",
+          path: "/dashboard",
+          icon: "fas fa-home",
+          color: "secondary"
+        },
+        {
+          label: "My Orders",
+          path: "/myorders",
+          icon: "fas fa-shopping-bag",
+          color: "accent"
+        },
+        {
+          label: "My Account",
+          path: "/myaccount",
+          color: "info",
+          icon: "fas fa-user-circle"
+        }
+      ]
+    };
   },
-  computed:
-  {
-    ...mapGetters(
-    {
-      user: "global/user"
-    })
-  },
-  mounted()
-  {
+
+  mounted() {
     this.appName = process.env.APP_NAME;
-  },
-
+  }
 };
-
 </script>

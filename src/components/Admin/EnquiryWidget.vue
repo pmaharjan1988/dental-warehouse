@@ -2,7 +2,7 @@
   <div>
     <div class="q-pa-md">
       <div class="row flex flex-center">
-        <q-card class="q-pa-md shadow-20 card-top-border  col-md-6">
+        <q-card class="q-pa-md shadow-20 card-top-border col-md-6">
           <q-list>
             <div v-for="item in enq_data">
               <q-item>
@@ -13,7 +13,14 @@
                 </q-item-section>
                 <q-item-section side top>
                   <q-item-label caption class="text-negative">{{ item.time|formatTime }}</q-item-label>
-                  <q-btn color="negative" class="mtt-10" dense size="sm" icon="delete" @click="deleteEnquiry(item.id)" />
+                  <q-btn
+                    color="negative"
+                    class="mtt-10"
+                    dense
+                    size="sm"
+                    icon="delete"
+                    @click="deleteEnquiry(item.id)"
+                  />
                 </q-item-section>
               </q-item>
               <q-separator spaced inset class="mtt-10 mbb-10" />
@@ -25,77 +32,54 @@
   </div>
 </template>
 <script>
-import
-{
-  firebaseStorage
-}
-from 'boot/firebase'
-import
-{
-  format,
-  formatDistance
-}
-from 'date-fns'
-export default
-{
-  data()
-  {
+import { firebaseStorage } from "boot/firebase";
+import { format, formatDistance } from "date-fns";
+export default {
+  data() {
     return {
-      enq_data: [],
-    }
-
+      enq_data: []
+    };
   },
-  created()
-  {
+  created() {
     this.initEnquiries();
   },
-  filters:
-  {
-    formatTime: function(value)
-    {
-      return formatDistance(new Date(value), new Date(),
-      {
+  filters: {
+    formatTime: function(value) {
+      return formatDistance(new Date(value), new Date(), {
         includeSeconds: true,
         addSuffix: true
-      })
+      });
     }
   },
 
-  methods:
-  {
-    initEnquiries: function()
-    {
-      let enquiryCollection = firebaseStorage.collection('enquiry').get()
-        .then(querySnapshot =>
-        {
-          let data = querySnapshot.docs.map(
+  methods: {
+    initEnquiries: function() {
+      let enquiryCollection = firebaseStorage
+        .collection("enquiry")
+        .get()
+        .then(querySnapshot => {
+          let data = querySnapshot.docs.map(doc => {
+            let qData = doc.data();
+            qData.id = doc.id;
+            return qData;
+          });
 
-            doc =>
-            {
-              let qData = doc.data()
-              qData.id = doc.id;
-              return qData;
-            }
-
-          );
-
-          let a_sort = data.sort(function(a, b)
-          {
+          let a_sort = data.sort(function(a, b) {
             return new Date(b.time) - new Date(a.time);
           });
           this.enq_data = a_sort;
         })
-        .catch(err =>
-        {
-          console.log('Error getting document', err);
+        .catch(err => {
+          console.log("Error getting document", err);
         });
     },
-    deleteEnquiry: function(id)
-    {
-      var deleteQuery = firebaseStorage.collection('enquiry').doc(id).delete()
+    deleteEnquiry: function(id) {
+      var deleteQuery = firebaseStorage
+        .collection("enquiry")
+        .doc(id)
+        .delete();
       this.initEnquiries();
     }
   }
 };
-
 </script>
