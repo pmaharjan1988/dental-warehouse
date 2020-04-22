@@ -80,12 +80,12 @@ export default {
           label: "Contact",
           to: "/contact",
           icon: ""
-        },
-        {
+        }
+        /*{
           label: "Terms",
           to: "/terms",
           icon: ""
-        }
+        }*/
       ],
       loginbaritems: [
         {

@@ -19,7 +19,7 @@
           </div>
         </q-card>
         <div class="row full-width justify-end mtt-10">
-          <q-btn color="primary" align="right" @click="proceedToPay()" size="1em">Pay Now</q-btn>
+          <!--  <q-btn color="primary" align="right" @click="proceedToPay()" size="1em">Pay Now</q-btn> -->
         </div>
       </div>
     </div>
