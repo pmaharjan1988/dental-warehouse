@@ -95,6 +95,11 @@ export async function getUserOrders(context, id) {
     });
 }
 
+export async function setEmptyUserOrders(context) {
+  const order = [];
+  await context.commit("SET_USER_ORDERS", order);
+}
+
 export async function getSingleProduct(context, id) {
   let productData = await firebaseStorage.collection('products');
   let query = productData.where('id', '==', id).get()

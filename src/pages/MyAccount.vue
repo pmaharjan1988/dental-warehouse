@@ -132,6 +132,7 @@ export default {
   },
   methods: {
     initProfile: async function() {
+      setEmptyUserOrders;
       await this.$store.dispatch("global/userMainProfile", this.userId);
       await this.getAddress(this.userId);
     },

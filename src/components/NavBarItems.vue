@@ -45,6 +45,40 @@
               <q-btn stretch flat :label="item.label" :to="item.to" color="primary" />
             </q-item-section>
           </q-item>
+          <q-item
+            clickable
+            v-close-popup
+            v-if="loginStatus == false"
+            v-for="(item,index) in loginbaritems"
+            :key="item.label"
+          >
+            <q-item-section>
+              <q-btn stretch flat :label="item.label" :to="item.to" color="primary" />
+            </q-item-section>
+          </q-item>
+          <q-item
+            clickable
+            v-close-popup
+            v-if="loginStatus == true"
+            v-for="(item,index) in logoutbaritems"
+            :key="item.label"
+          >
+            <q-item-section>
+              <q-btn stretch flat :label="item.label" :to="item.to" color="primary" />
+            </q-item-section>
+          </q-item>
+          <q-item clickable v-close-popup v-if="loginStatus == true">
+            <q-item-section>
+              <q-btn
+                class="mob-nav-items"
+                color="primary"
+                label="Logout"
+                stretch
+                flat
+                @click="logout()"
+              />
+            </q-item-section>
+          </q-item>
         </q-list>
       </q-menu>
     </q-btn>
@@ -52,7 +86,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import { firebaseAuth } from "boot/firebase";
+import { firebaseAuth, firebaseStorage } from "boot/firebase";
 import { LocalStorage, Notify } from "quasar";
 
 export default {
@@ -123,7 +157,9 @@ export default {
         this.loginStatus = true;
       }
     },
-    logout() {
+    async logout() {
+      await this.$store.dispatch("global/setEmptyUserOrders");
+
       LocalStorage.remove("STORAGEUSER");
       firebaseAuth.signOut().then(() => {
         this.$router.replace({

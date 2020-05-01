@@ -1,10 +1,10 @@
 <template>
   <q-page padding>
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
         <CheckoutItems />
       </div>
-      <div class="col-6 q-pa-md">
+      <div class="col-md-6 col-sm-12 q-pa-md">
         <q-card class="q-pa-md card-top-border">
           <div class="q-pa-md">
             <div class="text-h5">Deliever to this address</div>
@@ -19,7 +19,7 @@
           </div>
         </q-card>
         <div class="row full-width justify-end mtt-10">
-          <!--  <q-btn color="primary" align="right" @click="proceedToPay()" size="1em">Pay Now</q-btn> -->
+          <q-btn color="primary" align="right" @click="proceedToPay()" size="1em">Pay Now</q-btn>
         </div>
       </div>
     </div>

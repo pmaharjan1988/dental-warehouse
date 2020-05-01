@@ -16,9 +16,7 @@
             <q-item-section avatar>
               <q-icon :name="item.icon" />
             </q-item-section>
-            <q-item-section>
-              {{ item.label }}
-            </q-item-section>
+            <q-item-section>{{ item.label }}</q-item-section>
           </q-item>
         </q-list>
       </q-scroll-area>
@@ -29,112 +27,91 @@
   </q-layout>
 </template>
 <script>
-import
-{
-  firebaseAuth
-}
-from 'boot/firebase'
-import
-{
-  mapGetters
-}
-from "vuex";
-import BackToTop from 'vue-backtotop'
-import
-{
-  LocalStorage
-}
-from 'quasar'
-import
-{
-  Notify
-}
-from 'quasar'
+import { firebaseAuth } from "boot/firebase";
+import { mapGetters } from "vuex";
+import BackToTop from "vue-backtotop";
+import { LocalStorage } from "quasar";
+import { Notify } from "quasar";
 
-export default
-{
-  components:
-  {
+export default {
+  components: {
     BackToTop
   },
-  data()
-  {
+  data() {
     return {
       left: false,
       appName: null,
       storageUser: null,
       draweritems: [
-      {
-        label: 'Dashboard',
-        to: '/admin/dashboard',
-        icon: 'fas fa-home'
-      },
-      {
-        label: 'Add Product',
-        to: '/admin/addproduct',
-        icon: 'fas fa-images'
-      },
-      {
-        label: 'Enquiry',
-        to: '/admin/enquiry',
-        icon: 'fas fa-headset'
-      }]
-    }
+        {
+          label: "Dashboard",
+          to: "/admin/dashboard",
+          icon: "fas fa-home"
+        },
+        {
+          label: "Add Product",
+          to: "/admin/addproduct",
+          icon: "fas fa-images"
+        },
+        {
+          label: "Enquiry",
+          to: "/admin/enquiry",
+          icon: "fas fa-headset"
+        },
+        {
+          label: "Orders",
+          to: "/admin/orderlist",
+          icon: "fas fa-shopping-cart"
+        },
+        {
+          label: "Users",
+          to: "/admin/userslist",
+          icon: "fas fa-users"
+        },
+        {
+          label: "Forgot Password Request",
+          to: "/admin/fpr",
+          icon: "fas fa-unlock"
+        }
+      ]
+    };
   },
-  computed:
-  {
-    ...mapGetters(
-    {
+  computed: {
+    ...mapGetters({
       user: "global/user"
     })
   },
-  mounted()
-  {
+  mounted() {
     this.appName = process.env.APP_NAME;
   },
-  updated()
-  {
+  updated() {
     this.initCheckLogin();
   },
-  methods:
-  {
-    async initCheckLogin()
-    {
-
-      let x = await this.$store.dispatch('global/checkUserState');
-      this.storageUser = LocalStorage.getItem('STORAGEUSER');
+  methods: {
+    async initCheckLogin() {
+      let x = await this.$store.dispatch("global/checkUserState");
+      this.storageUser = LocalStorage.getItem("STORAGEUSER");
       console.log(this.storageUser);
-      console.log('user logiginn: ' + this.user.loggedIn);
-      if (this.storageUser == false)
-      {
-
-        Notify.create(
-        {
-          message: 'You are logged out. Please login.',
-          color: 'red'
+      console.log("user logiginn: " + this.user.loggedIn);
+      if (this.storageUser == false) {
+        Notify.create({
+          message: "You are logged out. Please login.",
+          color: "red"
         });
 
-        this.$router.push(
-        {
-          name: 'Login',
-        })
+        this.$router.push({
+          name: "Login"
+        });
       }
     },
-    logout()
-    {
-      LocalStorage.remove('STORAGEUSER');
-      firebaseAuth
-        .signOut()
-        .then(() =>
-        {
-
-          this.$router.replace(
-          {
-            name: "Login"
-          });
+    logout() {
+      LocalStorage.remove("STORAGEUSER");
+      firebaseAuth.signOut().then(() => {
+        this.$router.replace({
+          name: "Login"
         });
+      });
     }
   }
 };
-
 </script>

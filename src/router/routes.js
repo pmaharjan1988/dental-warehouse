@@ -197,6 +197,36 @@ const routes = [
       }]
   },
   {
+    path: '/admin/fpr',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'AdminFPR',
+        component: () => import('pages/Admin/ForgotPasswordRequest.vue')
+      }]
+  },
+  {
+    path: '/admin/orderlist',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'AdminOrders',
+        component: () => import('pages/Admin/AdminOrders.vue')
+      }]
+  },
+  {
+    path: '/admin/userslist',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'AdminUsersList',
+        component: () => import('pages/Admin/UsersList.vue')
+      }]
+  },
+  {
     path: '/admin/addproduct',
     component: () => import('layouts/AdminLayout.vue'),
     children: [

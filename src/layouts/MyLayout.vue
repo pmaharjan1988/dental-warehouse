@@ -13,21 +13,6 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-footer reveal elevated class="bg-white">
-      <div class="row d-flex justify-between">
-        <div class="bg-primary q-pa-md text-center text-white">All Rights Reserved - {{ appName }}</div>
-        <div class="mrr-40 mt-10">
-          <q-icon
-            class="text-primary q-pl-md q-ma-sm cursor-pointer"
-            v-for="(item, index) in socialIcons"
-            :key="index"
-            size="20px"
-            :name="item.icon"
-            @click="openSocialLinks(item.link)"
-          ></q-icon>
-        </div>
-      </div>
-    </q-footer>
   </q-layout>
 </template>
 
