@@ -3,6 +3,9 @@
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
+        <q-avatar square style="width:80px;padding-left:10px;">
+          <img src="statics/logo.jpg" />
+        </q-avatar>
         <q-toolbar-title>
           <q-btn stretch class="app-name" flat size="0.9em" :label="appName" to="/" />
         </q-toolbar-title>

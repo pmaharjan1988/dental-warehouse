@@ -4,7 +4,7 @@
       <div class="col-md-6 col-sm-12">
         <CheckoutItems />
       </div>
-      <div class="col-md-6 col-sm-12 q-pa-md">
+      <div class="col-md-6 col-sm-12 q-pa-lg">
         <q-card class="q-pa-md card-top-border">
           <div class="q-pa-md">
             <div class="text-h5">Deliever to this address</div>

@@ -2,6 +2,9 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
+        <q-avatar square style="width:80px">
+          <img src="statics/logo.jpg" />
+        </q-avatar>
         <q-toolbar-title>
           <q-btn stretch class="app-name" flat size="0.9em" :label="appName" to="/" />
         </q-toolbar-title>
