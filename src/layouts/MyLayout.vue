@@ -2,62 +2,148 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-avatar square style="width:80px">
-          <img src="statics/logo.jpg" />
-        </q-avatar>
         <q-toolbar-title>
           <q-btn stretch class="app-name" flat size="0.9em" :label="appName" to="/" />
         </q-toolbar-title>
-        <NavBarItems />
-        <CartButton />
+        <div v-if="!loginStatus">
+          <q-btn class='desk-nav-items' stretch flat v-for="(item,index) in navbaritems" :key="index" :label="item.label" :to="item.to" />
+          <q-btn class='mob-nav-items' icon="fas fa-bars">
+            <q-menu transition-show="flip-right" transition-hide="flip-left">
+              <q-list style="min-width: 100px">
+                <q-item clickable v-close-popup v-for="(item,index) in navbaritems" :key="index">
+                  <q-item-section>
+                    <q-btn stretch flat :label="item.label" :to="item.to" color="primary" />
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+        </div>
+        <div v-else>
+          <q-btn stretch flat label="Dashboard" to="/dashboard" />
+          <q-btn stretch flat label="LogOut" @click="logout()" />
+        </div>
+        <!--<CartButton />-->
       </q-toolbar>
     </q-header>
-
+    <q-footer reveal :reveal-offset="10" elevated class="bg-white text-primary text-center text-body2">
+      All Rights Reserved - {{ appName }}
+    </q-footer>
     <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
-
 <script>
-import BackToTop from "vue-backtotop";
-import CartButton from "../components/CartButton.vue";
-import NavBarItems from "../components/NavBarItems.vue";
-import { mapGetters } from "vuex";
-import { firebaseAuth } from "boot/firebase";
+import BackToTop from 'vue-backtotop'
+import CartButton from '../components/CartButton.vue'
+import
+{
+  mapGetters,
+}
+from 'vuex'
+import
+{
+  firebaseAuth
+}
+from 'boot/firebase'
+import
+{
+  LocalStorage,
+  Notify,
+}
+from 'quasar'
 
-export default {
-  components: {
+export default
+{
+  components:
+  {
     BackToTop,
-    CartButton,
-    NavBarItems
+    CartButton
   },
-  mounted() {
+  mounted()
+  {
     this.appName = process.env.APP_NAME;
   },
-  data() {
+  data()
+  {
     return {
       appName: null,
-      socialIcons: [
+      loginStatus: false,
+      navbaritems: [
         {
-          icon: "fab fa-facebook-square",
-          link: "https://facebook.com"
+          label: 'Home',
+          to: '/',
+          icon: ''
         },
         {
-          icon: "fab fa-instagram",
-          link: "https://facebook.com"
+          label: 'Products',
+          to: '/products',
+          icon: ''
+        },
+
+        {
+          label: 'About',
+          to: '/about',
+          icon: ''
         },
         {
-          icon: "fab fa-twitter",
-          link: "https://facebook.com"
-        }
+          label: 'Contact',
+          to: '/contact',
+          icon: ''
+        },
+        {
+          label: 'Login',
+          to: '/login',
+          icon: ''
+        },
+        {
+          label: 'Register',
+          to: '/register',
+          icon: ''
+        },
+
+
       ]
-    };
+    }
   },
-  methods: {
-    openSocialLinks: function(link) {
-      window.open(link, "_blank");
+  created()
+  {
+    this.initCheckLogin();
+  },
+  methods:
+  {
+    initCheckLogin: function()
+    {
+
+      let x = this.$store.dispatch('global/checkUserState');
+      this.storageUser = LocalStorage.getItem('STORAGEUSER');
+      console.log(this.storageUser)
+
+      if (this.storageUser == false)
+      {
+        this.loginStatus = false;
+      }
+      else
+      {
+        this.loginStatus = true;
+      }
+    },
+    logout()
+    {
+      LocalStorage.remove('STORAGEUSER');
+      firebaseAuth
+        .signOut()
+        .then(() =>
+        {
+
+          this.$router.replace(
+          {
+            name: "Login"
+          });
+        });
     }
   }
 };
+
 </script>

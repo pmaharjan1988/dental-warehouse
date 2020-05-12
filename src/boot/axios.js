@@ -2,21 +2,22 @@ import Vue from 'vue'
 import axios from 'axios'
 import VueImg from 'v-img';
 
-import {
+import
+{
   Notify
 }
-  from 'quasar'
+from 'quasar'
 
 Notify.setDefaults(
+{
+  position: 'top-right',
+  timeout: 2500,
+  actions: [
   {
-    position: 'top-right',
-    timeout: 2500,
-    actions: [
-      {
-        icon: 'close',
-        color: 'white'
-      }]
-  })
+    icon: 'close',
+    color: 'white'
+  }]
+})
 
 const vueImgConfig = {
   // Use `alt` attribute as gallery slide title

@@ -3,32 +3,15 @@
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
-        <q-avatar square style="width:80px;padding-left:10px;">
-          <img src="statics/logo.jpg" />
-        </q-avatar>
         <q-toolbar-title>
           <q-btn stretch class="app-name" flat size="0.9em" :label="appName" to="/" />
         </q-toolbar-title>
-        <NavBarItems />
-        <CartButton />
+        <!-- <CartButton /> -->
+        <q-btn stretch flat label="LogOut" @click="logout()" />
       </q-toolbar>
     </q-header>
-    <q-drawer
-      v-model="drawer"
-      show-if-above
-      :width="200"
-      :breakpoint="500"
-      bordered
-      content-class="bg-grey-3"
-    >
-      <q-list v-for="(menuItem, index) in menuList" :key="index">
-        <q-item clickable :to="menuItem.path" v-ripple>
-          <q-item-section avatar>
-            <q-icon :name="menuItem.icon" :color="menuItem.color" />
-          </q-item-section>
-          <q-item-section>{{ menuItem.label }}</q-item-section>
-        </q-item>
-      </q-list>
+    <q-drawer show-if-above v-model="left" side="left" bordered>
+      <!-- drawer content -->
     </q-drawer>
     <q-page-container>
       <router-view />
@@ -36,50 +19,93 @@
   </q-layout>
 </template>
 <script>
-import { firebaseAuth } from "boot/firebase";
-import BackToTop from "vue-backtotop";
-import CartButton from "../components/CartButton.vue";
-import NavBarItems from "../components/NavBarItems.vue";
+import
+{
+  firebaseAuth
+}
+from 'boot/firebase'
+import
+{
+  mapGetters
+}
+from "vuex";
+import BackToTop from 'vue-backtotop'
+import CartButton from '../components/CartButton.vue'
 
-import { LocalStorage, Notify } from "quasar";
+import
+{
+  LocalStorage,
+  Notify,
+}
+from 'quasar'
 
-export default {
-  components: {
+
+export default
+{
+  components:
+  {
     BackToTop,
-    CartButton,
-    NavBarItems
+    CartButton
   },
-  data() {
+  data()
+  {
     return {
       left: false,
       appName: null,
-      drawer: true,
       storageUser: null,
-      menuList: [
-        {
-          label: "Home",
-          path: "/dashboard",
-          icon: "fas fa-home",
-          color: "secondary"
-        },
-        {
-          label: "My Orders",
-          path: "/myorders",
-          icon: "fas fa-shopping-bag",
-          color: "accent"
-        },
-        {
-          label: "My Account",
-          path: "/myaccount",
-          color: "info",
-          icon: "fas fa-user-circle"
-        }
-      ]
-    };
+    }
   },
-
-  mounted() {
+  computed:
+  {
+    ...mapGetters(
+    {
+      user: "global/user"
+    })
+  },
+  mounted()
+  {
     this.appName = process.env.APP_NAME;
+  },
+  created()
+  {
+    this.initCheckLogin();
+  },
+  methods:
+  {
+    initCheckLogin: function()
+    {
+
+      let x = this.$store.dispatch('global/checkUserState');
+      this.storageUser = LocalStorage.getItem('STORAGEUSER');
+      if (this.storageUser == false)
+      {
+        Notify.create(
+        {
+          message: 'You are logged out. Please login.',
+          color: 'red'
+        });
+
+        this.$router.push(
+        {
+          name: 'Login',
+        })
+      }
+    },
+    logout()
+    {
+      LocalStorage.remove('STORAGEUSER');
+      firebaseAuth
+        .signOut()
+        .then(() =>
+        {
+
+          this.$router.replace(
+          {
+            name: "Login"
+          });
+        });
+    }
   }
 };
+
 </script>
