@@ -124,8 +124,8 @@ export default
 
     onReset()
     {
-      this.form.email = null
-      this.form.password = null
+      this.form.email = "";
+      this.form.password = "";
     },
   },
   computed:

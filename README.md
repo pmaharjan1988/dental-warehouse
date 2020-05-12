@@ -1,6 +1,6 @@
-# dental-ware (dental-ware)
+# Dental warehouse project (ict_project)
 
-Dental Warehouse - All dental products buy at one place
+Buy and sell all dental items
 
 ## Install the dependencies
 ```bash
